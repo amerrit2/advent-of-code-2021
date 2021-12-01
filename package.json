@@ -1,0 +1,35 @@
+{
+  "name": "typescript-lerna-workspaces-template",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Template bbgithub project",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint .",
+    "build": "tsc --build",
+    "watch": "ts-watcher",
+    "version:minor": "npx lerna version minor --create-release github --conventional-commits --yes",
+    "publish:minor": "npm run version:minor && ws-publish --dist-tag latest"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "--project-url--"
+  },
+  "author": "Adam Merritt (amerritt3@bloomberg.net)",
+  "license": "ISC",
+  "dependencies": {
+    "@nodejs-tools/ts-watcher": "^1.3.0",
+    "@nodejs-tools/workspace-tools": "^1.22.0",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "eslint": "^8.2.0",
+    "jest": "^27.3.1",
+    "lerna": "^4.0.0",
+    "typescript": "^4.5.2",
+    "ts-node": "^10.4.0",
+    "conventional-changelog-conventionalcommits": "^4.5.0"
+  }
+}

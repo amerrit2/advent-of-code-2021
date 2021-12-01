@@ -1,0 +1,15 @@
+{
+    "prettier.configPath": "../.prettierrc",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true
+    },
+    "files.exclude": {
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.map": {
+            "when": "$(basename)"
+        },
+        "**/*.d.ts": true
+    }
+}
