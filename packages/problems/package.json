@@ -4,7 +4,8 @@
   "description": "",
   "devDependencies": {},
   "scripts": {
-    "day1": "node ./day-1/solution.js"
+    "day1": "node ./day-1/solution.js",
+    "day2": "node ./day-2/solution.js"
   },
   "repository": {
     "type": "git",

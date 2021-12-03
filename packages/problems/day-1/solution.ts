@@ -6,8 +6,22 @@ async function readInput() {
     return `${await readFile(resolve(__dirname, process.argv[2] === 'test' ? "test_input.txt" : "input.txt"))}`.trim().split(/\r\n?/);
 }
 
+
+const windowCache = new Map<number[], Map<number, Map<number, number>>>();
+function readCache(readings: number[], window: number, index: number) {
+    const readingsMap = windowCache.get(readings) || windowCache.set(readings, new Map()).get(readings)!;
+    const windowMap = readingsMap.get(window) || readingsMap.set(window, new Map()).get(window)!;
+    return windowMap.get(index);
+}
+
+function setCache(readings: number[], window: number, index: number, value: number) {
+    const readingsMap = windowCache.get(readings) || windowCache.set(readings, new Map()).get(readings)!;
+    const windowMap = readingsMap.get(window) || readingsMap.set(window, new Map()).get(window)!;
+    return windowMap.set(index, value).get(index)!
+}
+
 function calcWindow(readings: number[], window: number, index: number) {
-    return Array.from((new Array(window)).keys()).reduce((acc, idx) => acc + readings[index - idx], 0);
+    return readCache(readings, window, index) || setCache(readings, window, index, Array.from((new Array(window)).keys()).reduce((acc, idx) => acc + readings[index - idx], 0))
 }
 
 function countIncreases(readings: number[], window = 1) {
