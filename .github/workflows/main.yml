@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-        - uses: k2bd/advent-readme-stars@v1.0.1
-        - name: advent-readme-stars
+      - name: advent-readme-stars
+        uses: k2bd/advent-readme-stars@v1.0.1
     
   build:
     # The type of runner that the job will run on
