@@ -2,15 +2,22 @@
   "name": "problems",
   "version": "1.0.0",
   "description": "",
-  "devDependencies": {},
   "scripts": {
     "day1": "node ./day-1/solution.js",
-    "day2": "node ./day-2/solution.js"
+    "day2": "node ./day-2/solution.js",
+    "day3": "node ./day-3/solution.js",
+    "day4": "node ./day-4/solution.js",
+    "day5": "node ./day-5/solution.js",
+    "day6": "node ./day-6/solution.js",
+    "day7": "node ./day-7/solution.js"
   },
   "repository": {
     "type": "git",
     "url": "https://bbgithub.dev.bloomberg.com/amerritt/typescript-lerna-workspaces-template.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.0.0"
+  }
 }
