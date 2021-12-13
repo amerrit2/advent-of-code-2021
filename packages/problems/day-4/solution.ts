@@ -1,6 +1,5 @@
-import assert from "assert";
-import { readInput } from "../common/util";
-
+import assert from 'assert';
+import { readInput } from '../common/util';
 
 class Board extends Array<number[]> {
     #rowHits: Record<number, number> = {};
@@ -8,7 +7,7 @@ class Board extends Array<number[]> {
     sum: number = 0;
     constructor() {
         super();
-        Array.from((new Array(5)).keys()).forEach(val => {
+        Array.from(new Array(5).keys()).forEach((val) => {
             this.#rowHits[val] = 0;
             this.#columnHits[val] = 0;
         });
@@ -25,7 +24,7 @@ class Board extends Array<number[]> {
 
     /**
      * Assumes any value is called once
-     */ 
+     */
     mark(value: number) {
         for (const row in this) {
             for (const col in this[row]) {
@@ -42,7 +41,6 @@ class Board extends Array<number[]> {
 
         return null;
     }
-    
 }
 
 function parseData(inputLines: string[]) {
@@ -52,12 +50,15 @@ function parseData(inputLines: string[]) {
     let currentBoard: Board;
     let currentRow: number[];
     while (inputLines.length) {
-        let line = inputLines.shift()?.split(/\s+/).reduce((out, val) => {
-            if (val !== '') {
-                out.push(parseInt(val, 10));
-            }
-            return out;
-        }, [] as number[]);
+        let line = inputLines
+            .shift()
+            ?.split(/\s+/)
+            .reduce((out, val) => {
+                if (val !== '') {
+                    out.push(parseInt(val, 10));
+                }
+                return out;
+            }, [] as number[]);
         if (line?.length) {
             assert(currentBoard!);
             currentRow = [] as number[];
@@ -74,21 +75,20 @@ function parseData(inputLines: string[]) {
     return {
         chosen,
         boards,
-    }
+    };
 }
 
 (async function main() {
     const input = await readInput(__dirname);
-  
-    let {boards, chosen} = parseData([...input]);
+
+    let { boards, chosen } = parseData([...input]);
 
     // Part 1
-    outer:
-    for (const value of chosen) {
+    outer: for (const value of chosen) {
         for (const board of boards) {
             const score = board.mark(parseInt(value, 10));
             if (score !== null) {
-                console.log("Winning score: ", score);
+                console.log('Winning score: ', score);
                 break outer;
             }
         }
@@ -98,17 +98,18 @@ function parseData(inputLines: string[]) {
     const rebuild = parseData([...input]);
     boards = rebuild.boards;
 
-    outer2:
-    for (const value of chosen) {
+    outer2: for (const value of chosen) {
         for (let boardIdx = boards.length - 1; boardIdx >= 0; boardIdx--) {
             const score = boards[boardIdx].mark(parseInt(value, 10));
             if (score !== null) {
                 if (boards.length === 1) {
-                    console.log("Losing score: ", score);
+                    console.log('Losing score: ', score);
                     break outer2;
-                } 
+                }
                 boards.splice(boardIdx, 1);
             }
         }
     }
-})().catch(e => {throw e;}) 
+})().catch((e) => {
+    throw e;
+});
